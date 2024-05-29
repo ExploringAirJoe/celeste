@@ -13,7 +13,6 @@ public class Main{
         JFrame homePage=new JFrame();
         homePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         homePage.setResizable(false);//固定大小
-        homePage.setBounds(0, 0,1680,1040);
         homePage.setExtendedState(JFrame.MAXIMIZED_BOTH);//全屏模式
         homePage.setUndecorated(true);
         homePage.setVisible(true);
@@ -21,7 +20,6 @@ public class Main{
         JPanel panel = new JPanel();
         panel.setBackground(new Color(250, 250, 250));
         panel.setLayout(null);
-        panel.setBounds(0,0,1680,1040);
         homePage.add(panel);
 
         //开始新游戏
@@ -67,6 +65,13 @@ public class Main{
     //跳转至游戏场景
     public static void getToGame()
     {
+        JFrame gamePage=new JFrame();
+        gamePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gamePage.setResizable(false);//固定大小
+        gamePage.setBounds(0, 0,1680,1040);
+        gamePage.setExtendedState(JFrame.MAXIMIZED_BOTH);//全屏模式
+        gamePage.setUndecorated(true);
+        gamePage.setVisible(true);
 
     }
 
@@ -76,7 +81,6 @@ public class Main{
         JFrame rankPage=new JFrame();
         rankPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         rankPage.setResizable(false);//固定大小
-        rankPage.setBounds(0, 0,1680,1040);
         rankPage.setExtendedState(JFrame.MAXIMIZED_BOTH);//全屏模式
         rankPage.setUndecorated(true);
         rankPage.setVisible(true);
@@ -84,7 +88,6 @@ public class Main{
         JPanel panel = new JPanel();
         panel.setBackground(new Color(250, 250, 250));
         panel.setLayout(null);
-        panel.setBounds(0,0,1680,1040);
         rankPage.add(panel);
 
         //展示排行榜
