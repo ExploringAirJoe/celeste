@@ -3,15 +3,15 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Timer extends JLabel {
+public class MyTimer extends JLabel {
     private double gameTime;//本局游戏进行时长（以秒为单位）
     private double lastFrameTime;//上一帧的时间
     private boolean gamePause;//用于标记当前游戏是否暂停
 
     //初始化，应当在游戏开始时调用生成计时器
-    public Timer()
+    public MyTimer()
     {
-        setBounds(1680,0,200,40);//设置范围
+        setBounds(1400,0,200,40);//设置范围
         setFont(new Font("Times New Roman",Font.BOLD,15));//设置字体
         setText("<html>Time:"+String.format("%.2f", gameTime)+"second</html>");//设置显示内容
         setForeground(Color.black);

@@ -1,6 +1,2 @@
 ExploringAirJoe
-23.123123
-CYY
-11.4514
-WHW
-123.123
+6.88
