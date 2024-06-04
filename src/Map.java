@@ -121,7 +121,7 @@ public class Map extends JPanel{
         if(goToNext())
         {
             id++;
-            if(id>2)
+            if(id>5)
             {
                 endGame=true;
                 return;
@@ -143,7 +143,7 @@ public class Map extends JPanel{
 
     public boolean goToNext()
     {
-        if(deadline.getLocationX()>1900)
+        if(deadline.getLocationX()>=1800)
         {
             return true;
         }

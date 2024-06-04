@@ -201,19 +201,48 @@ public class Deadline extends JLabel implements FocusListener{
             //与能量球碰撞
             if(block.getKind()==1)
             {
-                if(block.getBlockVisible())
+                if(block.getBlockVisible()&&(getSprint()==false))
                 {
                    resetDash();   
                    block.setBlockVisible(false);
                 }
                 return 0;
             }
+            //与刺碰撞
             if(block.getKind()==3)
             {
                 setIsDead(true);
                 return 0;
             }
-            if ((intersection.height < intersection.width)&&(intersection.width>1))
+            //与平台碰撞
+            if(block.getKind()==4)
+            {
+                if (locationY < block.getLocationY()) 
+                {
+                    locationY-=(intersection.height-1);
+                    if(speedY>0)
+                    {
+                        speedY=0;
+                        setJump(true);
+                        resetDash();
+                    }
+                    isAirborne=false;
+                    return 1; // 上碰撞
+                }
+                return 0;
+            }
+            //与弹簧碰撞
+            if(block.getKind()==6)
+            {
+                if(locationY<block.getLocationY())
+                {
+                    speedY=-15;
+                    resetDash();
+                    return 1;
+                }
+                return 0;
+            }
+            if ((intersection.height <= intersection.width)&&(intersection.width>1))
             {
                 if (locationY < block.getLocationY()) 
                 {
@@ -275,7 +304,7 @@ public class Deadline extends JLabel implements FocusListener{
     }
 
     private void performDash() {
-        int dashSpeed = 30; // Dash speed can be adjusted
+        int dashSpeed = 25; // Dash speed can be adjusted
         int diagCount = 0;
         speedX = 0;
         speedY = 0;
@@ -304,8 +333,8 @@ public class Deadline extends JLabel implements FocusListener{
         dashCount--;
         if (diagCount == 2) 
         {
-            speedX = speedX * 2 / 3;
-            speedY = speedY * 2 / 3;
+            speedX = speedX * 3 / 4;
+            speedY = speedY * 3 / 4;
         }
     }
 
@@ -321,6 +350,11 @@ public class Deadline extends JLabel implements FocusListener{
         if(locationX-52<0)
         {
             locationX=52;
+        }
+        if(locationY<0)
+        {
+            locationY=0;
+            speedY=0;
         }
 
         // 左移A右移D
@@ -414,7 +448,7 @@ public class Deadline extends JLabel implements FocusListener{
         repaint();
 
         //死亡
-        if(locationY>1400)
+        if(locationY>1400&&locationX<1800)
         {
             isDead=true;
         }
