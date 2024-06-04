@@ -27,6 +27,7 @@ public class Main{
         //开始新游戏
         JButton newGame=new JButton("New Game");
         newGame.setBounds(80,480,140,30);
+        newGame.setVisible(true);
         panel.add(newGame);
         newGame.addActionListener(new ActionListener()
         {
@@ -40,6 +41,7 @@ public class Main{
         //查看排行榜
         JButton rank=new JButton("Rank");
         rank.setBounds(80,540,140,30);
+        rank.setVisible(true);
         panel.add(rank);
         rank.addActionListener(new ActionListener()
         {
@@ -53,6 +55,7 @@ public class Main{
         //退出游戏
         JButton exitGame=new JButton("Exit Game");
         exitGame.setBounds(80,600,140,30);
+        exitGame.setVisible(true);
         panel.add(exitGame);
         exitGame.addActionListener(new ActionListener()
         {
@@ -62,6 +65,13 @@ public class Main{
                 System.exit(0);
             }
         });
+
+        //设置背景
+        ImageIcon backgroundIcon=new ImageIcon("./data/images/background/homepage.png");
+        JLabel background=new JLabel(backgroundIcon);
+        background.setBounds(0,0,1707,1067);
+        background.setVisible(true);
+        panel.add(background);
 
         homePage.repaint();
     }
@@ -80,8 +90,7 @@ public class Main{
         MyTimer myTimer=new MyTimer();
 
         int nowMapID=1;
-        Map map=new Map(nowMapID);
-        map.add(myTimer);
+        Map map=new Map(nowMapID,myTimer);
         gamePage.add(map);
 
         Timer timer = new Timer();
@@ -95,7 +104,7 @@ public class Main{
                     cancel();
                     getToEnd(myTimer.getTime());
                 }
-                map.add(myTimer);
+                //map.add(myTimer);
                 myTimer.refreshTime();
             }
         };
@@ -120,7 +129,9 @@ public class Main{
         endPage.add(panel);
 
         JLabel label=new JLabel("恭喜通关！请输入你的名字");
-        label.setBounds(490,360,160,30);
+        label.setBounds(420,330,300,60);
+        label.setFont(new Font("Serif",Font.BOLD,18));
+        label.setForeground(Color.WHITE);
         panel.add(label);
 
         //获取玩家名
@@ -141,12 +152,23 @@ public class Main{
             }
         });
 
+        //设置背景
+        ImageIcon backgroundIcon=new ImageIcon("./data/images/background/end.png");
+        JLabel background=new JLabel(backgroundIcon);
+        background.setBounds(0,0,1707,1067);
+        background.setVisible(true);
+        panel.add(background);
+
         endPage.repaint();
     }
 
     //修改排行榜
     public static void editRank(String playerName,double usedTime)
     {
+        if(playerName=="")
+        {
+            playerName="NULL";
+        }
         String recordName=new String("");
         double recordTime=10000;
         try(BufferedReader br=new BufferedReader(new FileReader("./data/rank.txt")))
@@ -203,6 +225,10 @@ public class Main{
         JLabel recordLabel=new JLabel("Record");
         nameLabel.setBounds(600,60,140,30);
         recordLabel.setBounds(940,60,140,30);
+        nameLabel.setFont(new Font("Serif",Font.BOLD,18));
+        recordLabel.setFont(new Font("Serif",Font.BOLD,18));
+        nameLabel.setForeground(Color.WHITE);
+        recordLabel.setForeground(Color.WHITE);
         panel.add(nameLabel);
         panel.add(recordLabel);
         try(BufferedReader br=new BufferedReader(new FileReader("./data/rank.txt")))
@@ -217,6 +243,10 @@ public class Main{
                 JLabel time=new JLabel(String.format("%.2f", recordTime));
                 name.setBounds(600,120+80*recordCnt,140,30);
                 time.setBounds(940,120+80*recordCnt,140,30);
+                name.setFont(new Font("Serif",Font.BOLD,18));
+                time.setFont(new Font("Serif",Font.BOLD,18));
+                name.setForeground(Color.WHITE);
+                time.setForeground(Color.WHITE);
                 panel.add(name);
                 panel.add(time);
                 recordCnt++;
@@ -226,6 +256,13 @@ public class Main{
         {
             e.printStackTrace();
         }
+
+        //设置背景
+        ImageIcon backgroundIcon=new ImageIcon("./data/images/background/homepage.png");
+        JLabel background=new JLabel(backgroundIcon);
+        background.setBounds(0,0,1707,1067);
+        background.setVisible(true);
+        panel.add(background);
 
         //返回主界面
         JButton back=new JButton("Back");

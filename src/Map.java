@@ -10,11 +10,24 @@ public class Map extends JPanel{
     private Deadline deadline;//戴德琳
     private ArrayList<Block> block;//地图中物品
     private boolean endGame;//是否停止游戏
+    
+    MyTimer myTimer;//计时器
+    private JLabel background;//设置背景
+    
 
-    public Map(int mapID)
+    public Map(int mapID,MyTimer myTimer)
     {
+        this.myTimer=myTimer;
+        add(this.myTimer);
+
         setBackground(new Color(250, 250, 250));
         setLayout(null);
+
+        ImageIcon backgroundIcon=new ImageIcon("./data/images/background/game.png");
+        background=new JLabel(backgroundIcon);
+        background.setBounds(0,0,1707,1067);
+        background.setVisible(true);
+        add(background);
 
         deadline=new Deadline(0,0);
         this.add(deadline);
@@ -25,6 +38,8 @@ public class Map extends JPanel{
 
     public void buildMap(int mapID)
     {
+        remove(background);
+
         if(!block.isEmpty())
         {
             for(Block b:block)
@@ -98,6 +113,9 @@ public class Map extends JPanel{
             b.setVisible(true);
             this.add(b);
         }
+
+        add(background);
+
         repaint();
     }
 
@@ -130,6 +148,8 @@ public class Map extends JPanel{
             deadline.setIsDead(false);
             deadline.setSpeed(0,0);
         }
+
+        myTimer.repaint();
     }
 
     public boolean restart()

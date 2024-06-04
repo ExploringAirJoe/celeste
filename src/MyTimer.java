@@ -11,10 +11,10 @@ public class MyTimer extends JLabel {
     //初始化，应当在游戏开始时调用生成计时器
     public MyTimer()
     {
-        setBounds(1400,0,200,40);//设置范围
-        setFont(new Font("Times New Roman",Font.BOLD,15));//设置字体
-        setText("<html>Time:"+String.format("%.2f", gameTime)+"second</html>");//设置显示内容
-        setForeground(Color.black);
+        setBounds(1400,0,300,60);//设置范围
+        setFont(new Font("Times New Roman",Font.BOLD,30));//设置字体
+        setForeground(Color.WHITE);
+        setText("<html>Time: "+String.format("%.2f", gameTime)+" second</html>");//设置显示内容
         setVisible(true);
 
         gameTime=0;//游戏时间置零
@@ -30,7 +30,7 @@ public class MyTimer extends JLabel {
         if(!gamePause)
         {
             gameTime+=(nowFrameTime-lastFrameTime);//累加时间
-            setText("<html>Time:"+String.format("%.2f", gameTime)+"second</html>");//设置显示内容
+            setText("<html>Time: "+String.format("%.2f", gameTime)+" second</html>");//设置显示内容
         }
         lastFrameTime=nowFrameTime;//更新上一帧的时间
     }
