@@ -134,6 +134,7 @@ public class Map extends JPanel{
             buildMap(id);
             deadline.setIsDead(false);
             deadline.setSpeed(0,0);
+            SoundPlayer.playSound("./data/sound/restart_level.wav");
         }
 
         if(goToNext())
@@ -141,9 +142,11 @@ public class Map extends JPanel{
             id++;
             if(id>5)
             {
+                SoundPlayer.playSound("./data/sound/win.wav");
                 endGame=true;
                 return;
             }
+            SoundPlayer.playSound("./data/sound/pass_level.wav");
             buildMap(id);
             deadline.setIsDead(false);
             deadline.setSpeed(0,0);

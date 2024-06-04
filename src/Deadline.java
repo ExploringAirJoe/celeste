@@ -336,6 +336,7 @@ public class Deadline extends JLabel implements FocusListener{
             speedX = speedX * 3 / 4;
             speedY = speedY * 3 / 4;
         }
+        SoundPlayer.playSound("./data/sound/double_jump.wav");
     }
 
     public void resetDash() {
